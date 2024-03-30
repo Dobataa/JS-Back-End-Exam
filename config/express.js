@@ -1,5 +1,6 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 
 function setupExpress(app){
     app.engine('.hbs', engine({
@@ -13,6 +14,8 @@ function setupExpress(app){
     app.use(express.urlencoded({
         extended: true
     }));
+
+    app.use(cookieParser());
 
 }
 

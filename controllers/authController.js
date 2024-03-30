@@ -6,7 +6,7 @@ const authService = require('../services/authService');
 
 router.get('/register', (req, res) => {
     res.render('register');
-})
+});
 
 router.post('/register', (req, res, next) => {
     const { username, password, rePassword } = req.body;
@@ -23,8 +23,10 @@ router.post('/register', (req, res, next) => {
         .catch(error => {
             return res.render('register', { error: {message: error.message} });
         });
+});
 
-
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 module.exports = router;
