@@ -1,6 +1,7 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const isAuthenticated = require('../middlewares/isAuthenticated');
 
 function setupExpress(app){
     app.engine('.hbs', engine({
@@ -16,6 +17,8 @@ function setupExpress(app){
     }));
 
     app.use(cookieParser());
+
+    app.use(isAuthenticated);
 
 }
 
