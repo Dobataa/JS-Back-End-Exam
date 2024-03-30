@@ -1,4 +1,17 @@
 <main>
+
+    {{#if user}}
+    <h1 class="text-center">Courses</h1>
+    <section>
+        <a href="/course/create" class="btn btn-warning ">Create Course</a>
+        <form class="search float-right">
+            <label>Search: </label>
+            <input type="text">
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </section>
+    {{else}}
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Tutorials</h1>
@@ -6,11 +19,10 @@
         </div>
     </div>
 
-    <div>
-        <h1 class="text-center">Top Courses</h1>
+    <h1 class="text-center">Top Courses</h1>
         <div class="container mt-3">
             <div class="row d-flex justify-content-center">
-
+    {{/if}}
                 <div class="card-deck">
                     <div class="card mb-4">
                         <img class="card-img-top"
@@ -48,5 +60,5 @@
             <h4 class="text-center">No courses...</h4>
 
         </div>
-    </div>
+    
 </main>
