@@ -2,7 +2,7 @@ const moment = require('moment');
 const Course = require('../models/Course');
 
 function getAll(){
-    return Course.find().lean();
+    return Course.find().sort({createdAt: 1}).lean();
 }
 
 function create(courseData, userId){
@@ -30,9 +30,18 @@ function enrollUser(courseId, userId){
         });
 }
 
+function getTop(size){
+    return Course
+            .find()
+            .sort({usersEnrolled: -1})
+            .limit(size)
+            .lean();
+}
+
 module.exports = {
     create,
     getAll,
     getOne,
-    enrollUser
+    enrollUser,
+    getTop
 }
