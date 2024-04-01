@@ -4,16 +4,18 @@ const courseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minLength: 4
     },
     description: {
         type: String,
         required: true,
-        maxLength: 50
+        minLength: 20
     },
     imageUrl: {
         type: String,
-        required: true
+        required: true,
+        validate: /^https?/
     },
     duration: {
         type: String,
@@ -23,10 +25,10 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    usersEnrolled: {
+    usersEnrolled: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 });
 
 module.exports = mongoose.model('Course', courseSchema);

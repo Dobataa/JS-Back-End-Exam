@@ -14,6 +14,26 @@ router.post('/create', (req, res) => {
         .then(course => {
             res.redirect('/');
         })
+        .catch(err => {
+            res.render('createCourse', { error: {message: err.message} });
+        });
+});
+
+router.get('/:courseId/details', (req, res) => {
+    courseService.getOne(req.params.courseId, req.user._id)
+        .then(course => {
+            res.render('courseDetails', course);
+        })
+        .catch(err => {
+            res.render('courseDetails', { error: {message: err.message} });
+        })
+});
+
+router.get('/:courseId/enroll', (req, res) => {
+    courseService.enrollUser(req.params.courseId, req.user._id)
+        .then(() => {
+            res.redirect(`/course/${req.params.courseId}/details`);
+        })
 });
 
 module.exports = router;
