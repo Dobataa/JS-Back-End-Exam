@@ -17,14 +17,17 @@
                 <h3 class="my-3">Description</h3>
                 <p>{{title}} is {{description}}</p>
 
-                {{#if isEnrolled}}
-                    <span class="enrolled-span">You are already enrolled</span>
-                {{else}}
-                <a class="btn btn-primary" href="/course/{{_id}}/enroll">Enroll</a>
-                {{/if}}
+                {{#if isCreator}}
+                    <a class="btn btn-danger" href="/">Delete</a>
+                    <a class="btn btn-warning" href="/">Edit</a>
+                {{else}}  
+                    {{#if isEnrolled}}
+                        <span class="enrolled-span">You are already enrolled</span>
+                    {{else}}
+                    <a class="btn btn-primary" href="/course/{{_id}}/enroll">Enroll</a>
+                    {{/if}}
 
-                <a class="btn btn-danger" href="/">Delete</a>
-                <a class="btn btn-warning" href="/">Edit</a>
+                {{/if}}
             </div>
         </div>
     </div>

@@ -9,8 +9,9 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
     let { title, description, imageUrl, duration } = req.body;
+    let userId = req.user._id;
 
-    courseService.create({title, description, imageUrl, duration})
+    courseService.create({title, description, imageUrl, duration}, userId)
         .then(course => {
             res.redirect('/');
         })
