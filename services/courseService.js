@@ -1,8 +1,18 @@
 const moment = require('moment');
 const Course = require('../models/Course');
 
-function getAll(){
-    return Course.find().sort({createdAt: 1}).lean();
+function getAll(search){
+    if(search){
+        return Course
+                .find({title: {$regex: search, $options: 'i'}})
+                .sort({createdAt: 1})
+                .lean();
+    }else{
+        return Course
+                .find()
+                .sort({createdAt: 1})
+                .lean();
+    }
 }
 
 function create(courseData, userId){
