@@ -38,10 +38,15 @@ function getTop(size){
             .lean();
 }
 
+function updateOne(courseId, courseData){
+    return Course.updateOne({_id: courseId}, courseData);
+}
+
 module.exports = {
     create,
     getAll,
     getOne,
     enrollUser,
-    getTop
+    getTop,
+    updateOne
 }

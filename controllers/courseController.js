@@ -37,4 +37,26 @@ router.get('/:courseId/enroll', (req, res) => {
         })
 });
 
+router.get('/:courseId/edit', (req, res) => {
+    courseService.getOne(req.params.courseId, req.user._id)
+        .then(course => {
+            res.render('editCourse', course);
+        })
+});
+
+router.post('/:courseId/edit', (req, res) => {
+    let { title, description, imageUrl, duration } = req.body;
+    let courseData = {
+        title,
+        description,
+        imageUrl,
+        duration
+    }
+
+    courseService.updateOne(req.params.courseId, courseData)
+        .then(() => {
+            res.redirect(`/course/${req.params.courseId}/details`);
+        })
+});
+
 module.exports = router;
