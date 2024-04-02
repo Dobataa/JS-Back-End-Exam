@@ -42,11 +42,16 @@ function updateOne(courseId, courseData){
     return Course.updateOne({_id: courseId}, courseData);
 }
 
+function deleteOne(courseId){
+    return Course.deleteOne({_id: courseId});
+}
+
 module.exports = {
     create,
     getAll,
     getOne,
     enrollUser,
     getTop,
-    updateOne
+    updateOne,
+    deleteOne
 }

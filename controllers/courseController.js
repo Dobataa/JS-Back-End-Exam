@@ -59,4 +59,11 @@ router.post('/:courseId/edit', (req, res) => {
         })
 });
 
+router.get('/:courseId/delete', (req, res) => {
+    courseService.deleteOne(req.params.courseId)
+        .then(() => {
+            res.redirect('/');
+        })
+});
+
 module.exports = router;
